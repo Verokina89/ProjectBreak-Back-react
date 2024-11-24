@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+</head>
+<body>
+    <h1>Registo</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login">Perfil</a>
+      </nav>
+    <form action="/register" method="post">
+        <input type="email" name="email" placeholder="Email" required autocomplete="on"/>
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit" id="registerButton">Registrar</button>
+    </form>
+    <script type="module" src="../utils/configRegister.js"></script>
+</body>
+</html>
