@@ -1,4 +1,28 @@
 const express = require('express');
+const { dbConnection } = require('./config/db');
+const dotenv = require('dotenv');
+const productRoutes = require('./routes/products');
+
+dotenv.config();
+const app = express();
+
+// Middleware para parsear JSON
+app.use(express.json());
+
+// Conectar a la base de datos
+dbConnection();
+
+// Rutas
+app.use('/api', productRoutes);
+
+// Servidor
+const PORT = process.env.PORT || 4500;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
+
+/*
+const express = require('express');
 const dotenv = require('dotenv')
 const { dbConnection } = require('./config/db');
 const methodOverride = require('method-override');
@@ -47,3 +71,4 @@ const PORT = process.env.PORT || 4500;
 app.listen(PORT, () => {
     console.log(`Server started on port http://localhost:${PORT}/`)
 });
+*/
