@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ProductController = require('../controllers/productsControllers');
+const ProductController = require('../controllers/productController');
 
 // Ruta para obtener productos por categoría (o todos los productos si no hay filtro)
 router.get('/products/:category?', ProductController.showProductsByCategory);
