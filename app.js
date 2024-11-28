@@ -1,24 +1,34 @@
 const express = require('express');
 const { dbConnection } = require('./config/db');
 const dotenv = require('dotenv');
-const productRoutes = require('./routes/productRoutes');
+// const cors = require("cors")
+// const swaggerUI = require('swagger-ui-express')
+// const docs = require('./docs/index')
 
 dotenv.config();
+
 const app = express();
+const productRoutes = require('./routes/productRoutes');
 
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Conectar a la base de datos
-dbConnection();
+
 
 // Rutas
-app.use('/api', productRoutes);
+app.get("/", (req, res) => {
+    res.send("Bienvenido a la API de productos. Usa /api/auth o /api/products para interactuar.");
+});
+
+app.use('/api/products', productRoutes);
+
+// Conectar a la base de datos
+dbConnection();
 
 // Servidor
 const PORT = process.env.PORT || 4500;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}/api`);
 });
 
 /*
