@@ -1,23 +1,22 @@
 const express = require('express');
-const { dbConnection } = require('./config/db');
 const dotenv = require('dotenv');
-// const cors = require("cors")
-// const swaggerUI = require('swagger-ui-express')
-// const docs = require('./docs/index')
+const { dbConnection } = require('./config/db');
+const cors = require('cors');
 
+//config dotenv.Cargar variables de entorno
 dotenv.config();
 
 const app = express();
-const productRoutes = require('./routes/productRoutes');
 
 // Middleware para parsear JSON
+app.use(cors());
 app.use(express.json());
 
-
+const productRoutes = require('./routes/productRoutes');
 
 // Rutas
 app.get("/", (req, res) => {
-    res.send("Bienvenido a la API de productos. Usa /api/auth o /api/products para interactuar.");
+    res.send("Bienvenid@s a la API de KIANELA. Usa /api/products para interactuar");
 });
 
 app.use('/api/products', productRoutes);
@@ -28,7 +27,7 @@ dbConnection();
 // Servidor
 const PORT = process.env.PORT || 4500;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}/api`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
 
 /*
