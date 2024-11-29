@@ -1,7 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const { dbConnection } = require('./config/db');
 const cors = require('cors');
+const { dbConnection } = require('./config/db');
+const productRoutes = require('./routes/productRoutes');
 
 //config dotenv.Cargar variables de entorno
 dotenv.config();
@@ -12,13 +13,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const productRoutes = require('./routes/productRoutes');
 
-// Rutas
+//ruta raw
 app.get("/", (req, res) => {
-    res.send("Bienvenid@s a la API de KIANELA. Usa /api/products para interactuar");
+    res.send("Bienvenid@s a la API de KIANELA. Para interactuar puede utilizar las siguientes rutas: /api/products   /api/products/category/T-shirts   /api/products/6715204871875b76cf03ab42 ");
 });
 
+//ruta de los productos
 app.use('/api/products', productRoutes);
 
 // Conectar a la base de datos
