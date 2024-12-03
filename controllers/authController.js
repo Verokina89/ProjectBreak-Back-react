@@ -1,5 +1,4 @@
-const admin = require('../config/firebase'); 
-const auth = admin.auth(); 
+const admin = require('../config/firebase');
 
 const authController = {
   loginUser: async (req, res) => {
@@ -10,7 +9,7 @@ const authController = {
     }
 
     try {
-      const decodedToken = await auth.verifyIdToken(idToken);
+      const decodedToken = await admin.auth().verifyIdToken(idToken);
 
       console.log('Token decodificado:', decodedToken);
 
@@ -48,8 +47,8 @@ const authController = {
     }
   },
 };
-module.exports = authController;
 
+module.exports = authController;
 
 
 
