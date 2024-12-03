@@ -1,5 +1,5 @@
-const admin = require('../config/firebase'); //importa firebaseAdmin inicializado
-const auth = admin.auth(); //instancia de autenticación
+const admin = require('../config/firebase'); 
+const auth = admin.auth(); 
 
 const authController = {
   loginUser: async (req, res) => {
@@ -10,13 +10,10 @@ const authController = {
     }
 
     try {
-      // Verificar el token con Firebase Admin
       const decodedToken = await auth.verifyIdToken(idToken);
 
-      //guardar el usuario en la base de datos
       console.log('Token decodificado:', decodedToken);
-      
-      // Enviar una respuesta exitosa
+
       res.status(200).json({ success: true, uid: decodedToken.uid });
 
     } catch (error) {
@@ -27,7 +24,6 @@ const authController = {
 
   logoutUser: async (req, res) => {
     try {
-      // Limpiar la cookie que contiene el token
       res.clearCookie('token');
       res.status(200).json({ success: true, message: 'Sesión cerrada correctamente' });
     } catch (error) {
