@@ -15,7 +15,7 @@ const ProductSchema = new mongoose.Schema({
     },
     category: { 
         type: String, 
-        enum: ['T-shirts', 'Sweters', 'Accessories', 'Snack'], 
+        enum: ['T-shirts', 'Sweaters', 'Accessories', 'Snack'], 
         required: true 
     },
     size: { 
@@ -40,7 +40,3 @@ ProductSchema.index({nombre: 1}); //Crea un indice en el campo "nombre" del prod
 const Product = mongoose.model('Product', ProductSchema);
 
 module.exports = Product;
-
-/*
-BUSCAR INFO DE COMO CREAR UNA validacion (VALIDATOR) en la descriptin, en image, categry, size y un mensaje sino cumple con lo indicado
-*/
