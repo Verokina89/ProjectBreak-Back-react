@@ -74,37 +74,3 @@ loginForm.addEventListener('submit', (event) => {
   event.preventDefault();  // Prevenir comportamiento predeterminado
   login();  // Llamar a la funcion de login definida aqui arriba en este archvo configLogin.js
 });
-
-
-
-
-/*
-Prueba con un ejemplo básico
-Si sabr donde esta el problema, se prueba con este codigo simple que solo realiza la autenticación con Firebase sin el fetch al backend:
-
-javascript
-Copiar código
-const login = async () => {
-  try {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log('Usuario autenticado:', userCredential.user);
-  } catch (error) {
-    console.error('Error en el login:', error.message);
-  }
-};
-
-
-Esto solamnte hace autenticación con Firebase. Si funciona, entonce el problema esta en la parte donde ese enva el idToken al backend.
-
-
-// const loginButton = document.getElementById("loginButton")
-
-// loginButton.addEventListener("click", () => {
-//   console.log("¡preciono el botoooooon!");
-  
-//     login()
-// })
-*/
