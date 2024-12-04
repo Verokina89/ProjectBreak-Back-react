@@ -49,6 +49,7 @@ const authController = {
       res.status(200).json({
         success: true,
         message: 'Inicio de sesión exitoso',
+        token: idToken, // Devuelve el token al frontend
         user: { uid, email },
       });
     } catch (error) {
