@@ -20,16 +20,25 @@ const authController = {
   },
 
   loginUser: async (req, res) => {
-    const { idToken } = req.body;
-    if (!idToken) {
-      return res.status(400).json({ error: 'Token no proporcionado' });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: 'email o contraseña incorrecta' });
     }
-
     try {
-      const decodedToken = await admin.auth().verifyIdToken(idToken);
-      res.status(200).json({ success: true, uid: decodedToken.uid });
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ error: 'Contraseña incorrecta' });
+        }
+
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ success: true, token });
     } catch (error) {
-      res.status(401).json({ error: 'Token inválido o expirado' });
+        res.status(500).json({ error: 'Error al iniciar sesión' });
     }
   },
 
