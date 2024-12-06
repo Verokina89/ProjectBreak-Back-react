@@ -22,12 +22,12 @@ const apiProductsControllers = {
             }
             const newProduct = new Product({ name, description, image, category,size, price });
             await newProduct.save();
+            
             res.status(201).json({ message: 'Product created successfully', product: newProduct });
         } catch (err) {
             res.status(500).send('Error creating product');
         }
     },
-    
     
     showProductById : async(req,res) => {
         try {
