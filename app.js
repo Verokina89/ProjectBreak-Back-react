@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 
 //ruta Errores
 app.use((req,res)=>{
-    res.status(404).json({message:'ERROR this link does not exist'})
+    res.status(404).json({message:'ERROR this link does not exist in the backend'})
 })
 
 // Conectar a la base de datos

@@ -5,11 +5,12 @@ const ApiProductsControllers = require('../controllers/apiProductsControllers')
 //ruta de todos los productos
 router.get('/products', ApiProductsControllers.getShowProducts);   
 
+//ruta de un producto Actualizado
+router.put('/:productId/edit', ApiProductsControllers.updateProduct);  
+
 //ruta para crear un nuevo producto
 router.post('/create', ApiProductsControllers.createProduct); 
 
-//ruta de un producto Actualizado
-router.put('/:productId/edit', ApiProductsControllers.updateProduct);  
 
 //ruta de un producto por su ID
 router.get('/:productId', ApiProductsControllers.showProductById); 
