@@ -8,12 +8,15 @@ router.get('/products', ApiProductsControllers.getShowProducts);
 //ruta de un producto Actualizado
 router.put('/:productId/edit', ApiProductsControllers.updateProduct);  
 
+//ruta de un producto por su ID
+router.get('/:productId', ApiProductsControllers.showProductById); 
+
 //ruta para crear un nuevo producto
 router.post('/create', ApiProductsControllers.createProduct); 
 
+//rut para eliminar un producto por ID
+router.delete('/:productId/delete', ApiProductsControllers.deleteProduct); 
 
-//ruta de un producto por su ID
-router.get('/:productId', ApiProductsControllers.showProductById); 
 
 // router.put('/:productId/edit', (req, res) => {
 //     console.log('Ruta PUT /:productId/edit alcanzada con params:', req.params);
@@ -21,7 +24,5 @@ router.get('/:productId', ApiProductsControllers.showProductById);
 // });
 
 
-//rut para eliminar un producto por ID
-router.delete('/:productId/delete', ApiProductsControllers.deleteProduct); 
 
 module.exports = router;
