@@ -21,23 +21,3 @@ const authenticated = (req, res, next) => {
 };
 
 module.exports = authenticated
-
-/*
-const verifyToken = async (req, res, next) => {
-  const idToken = req.body.idToken;
-
-  if (!idToken) {
-    return res.status(401).json({ error: 'No token provided' });
-  }
-
-  try {
-    // Verifica el token con Firebase Admin
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
-    req.user = decodedToken; // Añadimos el usuario decodificado a la solicitud
-    next(); // El token es válido, continuar con la siguiente función
-  } catch (error) {
-    return res.status(403).json({ error: 'Invalid or expired token' });
-  }
-};
-
-*/

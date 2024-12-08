@@ -35,7 +35,7 @@ const ProductSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-ProductSchema.index({nombre: 1}); //Crea un indice en el campo "nombre" del producto en la funcion 'PoductSchema'. Lo que hace es señalar que el indice sera en orden ascendente (y -1 para descendete ) permitiendo mejorar la busqueda (en base al tiempo de respuesta rápida) cuando se usan los metodo find(), findOne() u otras (solo en nombre)
+ProductSchema.index({nombre: 1});
 
 const Product = mongoose.model('Product', ProductSchema);
 
