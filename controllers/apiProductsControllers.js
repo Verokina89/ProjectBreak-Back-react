@@ -1,4 +1,4 @@
-const Products = require('../models/Product')
+const Product = require('../models/Product')
 
 const apiProductsControllers = {
     // Obtener todos los productos

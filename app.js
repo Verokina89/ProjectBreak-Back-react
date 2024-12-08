@@ -20,6 +20,7 @@ app.use('/auth', authRoutes);
 
 app.use('/api/products', productRoutes);
 
+
 //ruta base home(kianela)
 app.get("/", (req, res) => {
     res.send("Bienvenid@s a la API de KIANELA. Para interactuar puede utilizar las siguientes rutas: /api/products   /api/products/category/T-shirts     /api/products/6715204871875b76cf03ab42 ");
@@ -27,9 +28,9 @@ app.get("/", (req, res) => {
 //app.use('/users',authUser)
 
 //ruta Errores
-app.use((req,res)=>{
-    res.status(404).json({message:'ERROR this link does not exist'})
-})
+// app.use((req,res)=>{
+//     res.status(404).json({message:'ERROR this link does not exist'})
+// })
 
 // Conectar a la base de datos
 dbConnection();
