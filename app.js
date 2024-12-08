@@ -28,9 +28,9 @@ app.get("/", (req, res) => {
 //app.use('/users',authUser)
 
 //ruta Errores
-// app.use((req,res)=>{
-//     res.status(404).json({message:'ERROR this link does not exist'})
-// })
+app.use((req,res)=>{
+    res.status(404).json({message:'ERROR this link does not exist'})
+})
 
 // Conectar a la base de datos
 dbConnection();

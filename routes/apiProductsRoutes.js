@@ -9,15 +9,15 @@ router.get('/products', ApiProductsControllers.getShowProducts);
 router.post('/create', ApiProductsControllers.createProduct); 
 
 //ruta de un producto Actualizado
-// router.put('/:productId/edit', ApiProductsControllers.updateProduct);  
+router.put('/:productId/edit', ApiProductsControllers.updateProduct);  
 
 //ruta de un producto por su ID
 router.get('/:productId', ApiProductsControllers.showProductById); 
 
-router.put('/:productId/edit', (req, res) => {
-    console.log('Ruta PUT /:productId/edit alcanzada con params:', req.params);
-    res.send('Ruta alcanzada');
-});
+// router.put('/:productId/edit', (req, res) => {
+//     console.log('Ruta PUT /:productId/edit alcanzada con params:', req.params);
+//     res.send('Ruta alcanzada');
+// });
 
 
 //rut para eliminar un producto por ID
