@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { dbConnection } = require('./config/db');
-const productRoutes = require('./routes/productRoutes');
+const productRoutes = require('./routes/apiProductsRoutes');
 const authRoutes = require('./routes/authRoutes');
 require('./config/firebase')
 

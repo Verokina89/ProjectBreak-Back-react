@@ -42,6 +42,7 @@ const apiProductsControllers = {
         }
     },
     updateProduct : async(req,res) => {
+        console.log('updateProduct alcanzado con params:', req.params);
         try {
             //log para depuracion
             console.log('Params:', req.params);
