@@ -43,13 +43,31 @@ const apiProductsControllers = {
     },
     updateProduct : async(req,res) => {
         try {
+            //log para depuracion
+            console.log('Params:', req.params);
+            console.log('Body:', req.body);
+
             const { productId } = req.params;
-            const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, { new: true });
+
+            // Validar los datos enviados
+            const { name, description, image, category, size, price } = req.body;
+            if (!name || !description || !image || !category || !size || !price) {
+                return res.status(400).json({ message: 'All fields are required' });
+            }
+
+            // Actualizar el producto en la base de datos
+            const updatedProduct = await Product.findByIdAndUpdate(productId, 
+                { name, description, image, category, size, price }, // Solo los campos necesarios
+                { new: true, runValidators: true } // Opciones para devolver el documento actualizado y validar datos
+            );
+            // Verificar si se encontró y actualizó el producto
             if (!updatedProduct) {
                 return res.status(404).json({ message: 'Product not found' });
             }
+            // Responder con el producto actualizado
             res.json({ message: 'Product updated successfully', product: updatedProduct });
         } catch (err) {
+            console.error('Error updating product:', err);
             res.status(500).send('Error updating product');
         }
     },
