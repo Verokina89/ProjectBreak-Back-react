@@ -15,8 +15,8 @@ const app = express();
 // Middleware parsea JSON
 // app.use(cors());
 app.use(cors({
-    origin: 'http://localhost:5173', //cambia al puerto del frontend
-    credentials: true, //cookies o autenticacion
+    origin: 'http://localhost:5173', 
+    credentials: true, 
 }));
 
 app.use(express.json());
