@@ -2,8 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { dbConnection } = require('./config/db');
-const productRoutes = require('./routes/apiProductsRoutes');
+const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
+
 require('./config/firebase')
 
 //config dotenv.Cargar variables de entorno
