@@ -34,7 +34,7 @@ const authController = {
     const { idToken } = req.body;
 
     if (!idToken) {
-      return res.status(400).json({ error: 'Token no proporcionado' });
+      return res.status(400).json({ error: 'Token NOOO PROPORCIONADOOO' });
     }
 
     try {

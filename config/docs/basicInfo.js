@@ -5,10 +5,5 @@ module.exports = {
         title:'Api Products',
         description:"This api with necessary information about the store products"
     }   
-
-
-
-
-
-    
+  
 }
