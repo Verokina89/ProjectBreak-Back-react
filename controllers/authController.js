@@ -1,11 +1,12 @@
 // const User = require("../models/UserModel");
 const admin = require('../config/firebase');
+const User = require('../models/User'); // Si usas MongoDB
 
 const authController = {
-  //pagina para registro opcional, depende de tu frontend
-  register: async (req, res) => {
-    res.send('Página de registro');
-  },
+  // //pagina para registro opcional, depende de tu frontend
+  // register: async (req, res) => {
+  //   res.send('Página de registro');
+  // },
 
   //registra nuevo usuario
   registerUser: async (req, res) => {
@@ -25,10 +26,10 @@ const authController = {
     }
   },
 
-  //depende del flujo del frontend)
-  login: (req, res) => {
-    res.send('Página de login');
-  },
+  // //depende del flujo del frontend)
+  // login: (req, res) => {
+  //   res.send('Página de login');
+  // },
 
   //inicio de sesión
   loginUser: async (req, res) => {
