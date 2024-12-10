@@ -1,5 +1,4 @@
 //datos requeridos para ususario registrado
-
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
@@ -8,13 +7,11 @@ const UserSchema = new mongoose.Schema({
         required:true,
         trim:true
     },
-    
-
     password:{
         type:String,
         require:true,
         trim: true
-    }
+    },
 
 },{timestamps:true})
 
