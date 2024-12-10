@@ -16,9 +16,10 @@ dotenv.config();
 
 const app = express();
 
-// Middleware parsea JSON
+// Middleware
 app.use(cors());
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname,"public")));  //servir archivos estaticos; HTML,CSS, js e imágenes
