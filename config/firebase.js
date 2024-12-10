@@ -17,13 +17,13 @@ const serviceAccount = {
     universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN,
 };
 
-if (!admin.apps.length) {
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        databaseURL: process.env.FIREBASE_DATABASE_URL,
-    });
-    console.log('Firebase Admin initialized successfully.');
-}
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+});
+console.log('Firebase Admin initialized successfully.');
+
 
 // For Firebase(client) JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
