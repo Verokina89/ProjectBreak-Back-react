@@ -9,6 +9,7 @@ const methodOverride = require('method-override');
 const swaggerUI = require('swagger-ui-express')
 // const showAllProducts = require('./controllers/productController')
 const productRoutes = require('./routes/productRoutes')
+const ApiProductsRoutes = require('./routes/apiProductsRoutes');
 const authRoutes = require('./routes/authRoutes')
 const docs = require('./config/docs/index')
 require('./config/firebase')
@@ -28,7 +29,7 @@ app.use(cookieParser())
 app.use(methodOverride('_method')) //soporta POST-PUT-DELETE en formularios
 
 //Ruta API
-app.use('/api/products', productRoutes);
+app.use('/api/products', productRoutes, ApiProductsRoutes);
 //ruta autenticacin
 app.use('/auth', authRoutes);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));

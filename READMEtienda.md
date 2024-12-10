@@ -187,3 +187,14 @@ MongoDB Atlas
 Firebase
 Render
 Jest
+
+
+Extras:
+method-override: Permite que los formularios HTML envíen solicitudes HTTP diferentes a las estándar (GET y POST). Por ejemplo, puedes agregar un campo oculto _method al formulario para simular un PUT o DELETE.
+
+html
+Copiar código
+<form action="/api/products/123?_method=DELETE" method="POST">
+    <button type="submit">Eliminar Producto</button>
+</form>
+El middleware interceptará la solicitud y la transformará en un DELETE.
