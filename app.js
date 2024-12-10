@@ -7,7 +7,7 @@ const swaggerUI = require('swagger-ui-express')
 // const showAllProducts = require('./controllers/productController')
 const productRoutes = require('./routes/productRoutes')
 const authRoutes = require('./routes/authRoutes')
-const docs = require('./docs/index')
+const docs = require('./config/docs/index')
 
 require('./config/firebase')
 
