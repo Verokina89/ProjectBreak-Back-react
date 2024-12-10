@@ -4,12 +4,13 @@ const dotenv = require('dotenv')
 const { dbConnection } = require('./config/db')
 const cookieParser = require('cookie-parser')
 const cors = require('cors');
+const path = require('path');
+const methodOverride = require('method-override');
 const swaggerUI = require('swagger-ui-express')
 // const showAllProducts = require('./controllers/productController')
 const productRoutes = require('./routes/productRoutes')
 const authRoutes = require('./routes/authRoutes')
 const docs = require('./config/docs/index')
-const path = require('path');
 require('./config/firebase')
 
 //config dotenv.Cargar variables de entorno
