@@ -1,9 +1,13 @@
-const express = require('express');
-const dotenv = require('dotenv');
+const express = require('express')
+const dotenv = require('dotenv')
+const { dbConnection } = require('./config/db')
+const cookieParser = require('cookie-parser')
 const cors = require('cors');
-const { dbConnection } = require('./config/db');
-const productRoutes = require('./routes/productRoutes');
-const authRoutes = require('./routes/authRoutes');
+const swaggerUI = require('swagger-ui-express')
+// const showAllProducts = require('./controllers/productController')
+const productRoutes = require('./routes/productRoutes')
+const authRoutes = require('./routes/authRoutes')
+const docs = require('./docs/index')
 
 require('./config/firebase')
 
@@ -13,21 +17,22 @@ dotenv.config();
 const app = express();
 
 // Middleware parsea JSON
-// app.use(cors());
-app.use(cors({
-    origin: 'http://localhost:5173', 
-    credentials: true, 
-}));
-
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname,"public")));  //servir archivos estaticos; HTML,CSS, js e imágenes
+app.use(methodOverride('_method')) //soporta POST-PUT-DELETE en formularios
 
+//Ruta API
+app.use('/api/products', productRoutes);
 //ruta autenticacin
 app.use('/auth', authRoutes);
-
-app.use('/api/products', productRoutes);
-
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
+console.log("Rutas de productos registradas en /api/products");
 
 //ruta base home(kianela)
+// app.get('/', showAllProducts)
 app.get("/", (req, res) => {
     res.send("Bienvenid@s a la API de KIANELA. Para interactuar puede utilizar las siguientes rutas: /api/products   /api/products/category/T-shirts     /api/products/6715204871875b76cf03ab42 ");
 });

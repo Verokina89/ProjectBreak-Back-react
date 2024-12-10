@@ -12,8 +12,6 @@ const apiProductsControllers = {
             res.status(500).send(err)
         }
     },
-
-    //crea un producto
     createProduct : async(req,res) => {
         try {
             const { name, description, image, category,size, price } = req.body;
