@@ -1,3 +1,4 @@
+
 const express = require('express')
 const dotenv = require('dotenv')
 const { dbConnection } = require('./config/db')
@@ -8,7 +9,7 @@ const swaggerUI = require('swagger-ui-express')
 const productRoutes = require('./routes/productRoutes')
 const authRoutes = require('./routes/authRoutes')
 const docs = require('./config/docs/index')
-
+const path = require('path');
 require('./config/firebase')
 
 //config dotenv.Cargar variables de entorno
@@ -19,10 +20,10 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname,"public")));  //servir archivos estaticos; HTML,CSS, js e imágenes
 
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname,"public")));  //servir archivos estaticos; HTML,CSS, js e imágenes
 app.use(methodOverride('_method')) //soporta POST-PUT-DELETE en formularios
 
 //Ruta API
