@@ -10,9 +10,9 @@ const swaggerUI = require('swagger-ui-express')
 // const showAllProducts = require('./controllers/productController')
 const productRoutes = require('./routes/productRoutes')
 const ApiProductsRoutes = require('./routes/apiProductsRoutes');
-const authRoutes = require('./routes/authRoutes')
 const docs = require('./config/docs/index')
 require('./config/firebase')
+const authRoutes = require('./routes/authRoutes')
 
 //config dotenv.Cargar variables de entorno
 dotenv.config();

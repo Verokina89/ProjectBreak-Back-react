@@ -12,9 +12,6 @@ console.log('Firebase Admin initialized successfully.');
 module.exports = admin;
 
 
-
-
-
 // if (!admin.apps.length) { //asegura no inicalizar ms vcs
 //   admin.initializeApp({
 //     credential: admin.credential.cert(serviceAccount),
