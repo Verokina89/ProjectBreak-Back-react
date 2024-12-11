@@ -1,58 +1,59 @@
-// const User = require("../models/UserModel");
-const admin = require('../config/firebase');
-const User = require('../models/User'); // Si usas MongoDB
+
+const admin = require('../config/firebase'); // Firebase Admin SDK
 
 const authController = {
-  // //pagina para registro opcional, depende de tu frontend
-  // register: async (req, res) => {
-  //   res.send('Página de registro');
+  // // Registro de usuario en Firebase
+  // registerUser: async (req, res) => {
+  //   const { email, password } = req.body;
+
+  //   if (!email || !password) {
+  //     return res.status(400).json({ error: 'El correo electrónico y la contraseña son obligatorios.' });
+  //   }
+
+  //   try {
+  //     // Crear usuario en Firebase
+  //     const userRecord = await admin.auth().createUser({ email, password });
+
+  //     res.status(201).json({
+  //       success: true,
+  //       message: 'Usuario registrado correctamente en Firebase.',
+  //       user: {
+  //         id: userRecord.uid,
+  //         email: userRecord.email,
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.error('Error al registrar usuario:', error);
+  //     res.status(400).json({ error: error.message });
+  //   }
   // },
 
-  //registra nuevo usuario
-  registerUser: async (req, res) => {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({ error: 'El correo electrónico y la contraseña son obligatorios.' });
-    }
-
-    try {
-      //crea usuario en Firebase
-      const userRecord = await admin.auth().createUser({ email, password });
-      res.status(201).json({ success: true, user: userRecord });
-    } catch (error) {
-      console.error('Error al registrar usuario:', error);
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // //depende del flujo del frontend)
-  // login: (req, res) => {
-  //   res.send('Página de login');
-  // },
-
-  //inicio de sesión
+  
   loginUser: async (req, res) => {
     const { idToken } = req.body;
 
     if (!idToken) {
-      return res.status(400).json({ error: 'Token NOOO PROPORCIONADOOO' });
+      return res.status(400).json({ error: 'Token no proporcionado' });
     }
 
     try {
-      //verificar token de Firebase
+      //verificar el token de Firebase
       const decodedToken = await admin.auth().verifyIdToken(idToken);
 
-      // Extraer información del usuario
-      const {email, password} = decodedToken;
+      //extrae info del usuario
+      const { uid, email } = decodedToken;
 
-      //busca informacion del usuario en tu base de datos usando el `uid`
+      //token personalizado
+      const customToken = await admin.auth().createCustomToken(uid);
 
       res.status(200).json({
         success: true,
         message: 'Inicio de sesión exitoso',
-        token: idToken, // Devuelve el token al frontend
-        user: {email, password},
+        user: {
+          id: uid,
+          email,
+        },
+        token: customToken, 
       });
     } catch (error) {
       console.error('Error al verificar el token:', error);
@@ -60,11 +61,14 @@ const authController = {
     }
   },
 
-  // Manejo de cierre de sesión
+ 
   logoutUser: async (req, res) => {
     try {
-      res.clearCookie('token'); // Limpia la cookie del token
-      res.status(200).json({ success: true, message: 'Sesión cerrada correctamente' });
+      res.clearCookie('token'); 
+      res.status(200).json({
+        success: true,
+        message: 'Sesión cerrada correctamente',
+      });
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
       res.status(500).json({ error: 'Error al cerrar sesión' });
@@ -73,6 +77,7 @@ const authController = {
 };
 
 module.exports = authController;
+
 
 
 
