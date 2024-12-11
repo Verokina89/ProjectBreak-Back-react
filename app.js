@@ -13,7 +13,6 @@ const ApiProductsRoutes = require('./routes/apiProductsRoutes');
 const docs = require('./config/docs/index')
 require('./config/firebase')
 
-
 //config dotenv.Cargar variables de entorno
 dotenv.config();
 
