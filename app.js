@@ -12,7 +12,7 @@ const productRoutes = require('./routes/productRoutes')
 const ApiProductsRoutes = require('./routes/apiProductsRoutes');
 const docs = require('./config/docs/index')
 require('./config/firebase')
-const authRoutes = require('./routes/authRoutes')
+
 
 //config dotenv.Cargar variables de entorno
 dotenv.config();
@@ -30,8 +30,11 @@ app.use(methodOverride('_method')) //soporta POST-PUT-DELETE en formularios
 
 //Ruta API
 app.use('/api/products', productRoutes, ApiProductsRoutes);
+
 //ruta autenticacin
+const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
+
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 console.log("Rutas de productos registradas en /api/products");
 
