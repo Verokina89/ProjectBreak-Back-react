@@ -17,13 +17,11 @@ const serviceAccount = {
     universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN,
 };
 
-
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: process.env.FIREBASE_DATABASE_URL,
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: process.env.FIREBASE_DATABASE_URL,
 });
 console.log('Firebase Admin initialized successfully.');
-
 
 // For Firebase(client) JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -37,3 +35,16 @@ const firebaseConfig = {
 };
 
 module.exports = {admin, firebaseConfig};
+
+
+/*
+const admin = require('firebase-admin');
+
+const serviceAccount = require('./path/to/your/firebase/credentials.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://backendshop-55d00.firebaseio.com',
+
+module.exports = admin;
+*/

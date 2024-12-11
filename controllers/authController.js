@@ -27,7 +27,6 @@ const authController = {
   //     res.status(400).json({ error: error.message });
   //   }
   // },
-
   
   loginUser: async (req, res) => {
     const { idToken } = req.body;
@@ -43,9 +42,6 @@ const authController = {
       //extrae info del usuario
       const { uid, email } = decodedToken;
 
-      //token personalizado
-      const customToken = await admin.auth().createCustomToken(uid);
-
       res.status(200).json({
         success: true,
         message: 'Inicio de sesión exitoso',
@@ -53,11 +49,10 @@ const authController = {
           id: uid,
           email,
         },
-        token: customToken, 
       });
     } catch (error) {
       console.error('Error al verificar el token:', error);
-      res.status(401).json({ error: 'Token inválido o expirado' });
+      res.status(401).json({ error: 'Token invalido o expirado' });
     }
   },
 
@@ -77,31 +72,3 @@ const authController = {
 };
 
 module.exports = authController;
-
-
-
-
-// const login = async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-//     if (!email || !password) {
-//       return res.status(400).json({ error: "Email y contraseña son requeridos" });
-//     }
-
-//     const user = await User.findOne({ email });
-//     if (!user || !(await bcrypt.compare(password, user.password))) {
-//       return res.status(401).json({ error: "Credenciales inválidas" });
-//     }
-
-//     const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET,/*"your_jwt_secret",*/ {
-//       expiresIn: "1h",
-//     });
-//     res.status(200).json({ message: "Inicio de sesión exitoso", token });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Error al iniciar sesión" });
-//   }n
-// };
-
-// module.exports = { login };
-
