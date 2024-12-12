@@ -84,5 +84,3 @@ const apiProductsControllers = {
 };
 
 module.exports = apiProductsControllers;
-
-
