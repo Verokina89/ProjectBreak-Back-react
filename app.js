@@ -28,12 +28,15 @@ app.use(cookieParser())
 app.use(methodOverride('_method')) //soporta POST-PUT-DELETE en formularios
 
 //Ruta API
-app.use('/api/products', productRoutes, ApiProductsRoutes);
+// app.use('/api/products', productRoutes, ApiProductsRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/products/api', ApiProductsRoutes);
 
 //ruta autenticacin
 const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
 
+//ruta products swagger
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 console.log("Rutas de productos registradas en /api/products");
 
@@ -42,7 +45,6 @@ console.log("Rutas de productos registradas en /api/products");
 app.get("/", (req, res) => {
     res.send("Bienvenid@s a la API de KIANELA. Para interactuar puede utilizar las siguientes rutas: /api/products   /api/products/category/T-shirts     /api/products/6715204871875b76cf03ab42 ");
 });
-//app.use('/users',authUser)
 
 //ruta Errores
 app.use((req,res)=>{

@@ -3,7 +3,8 @@ const router = express.Router()
 const ApiProductsControllers = require('../controllers/apiProductsControllers')
 
 //ruta de todos los productos
-router.get('/products', ApiProductsControllers.getShowProducts);   
+// router.get('/products', ApiProductsControllers.getShowProducts);   
+router.get('/', ApiProductsControllers.getShowProducts);   
 
 //ruta para crear un nuevo producto
 router.post('/create', ApiProductsControllers.createProduct); 

@@ -29,6 +29,7 @@ const apiProductsControllers = {
     
     showProductById : async(req,res) => {
         try {
+            console.log("Params:", req.params);
             const { productId } = req.params;
             const product = await Product.findById(productId);
             if (!product) {
@@ -36,6 +37,7 @@ const apiProductsControllers = {
             }
             res.json(product);
         } catch (err) {
+            console.error("Error fetching product:", err);
             res.status(500).send('Error fetching product');
         }
     },
