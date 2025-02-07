@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ProductController = require('../controllers/productController');
+const { createProduct } = require('../controllers/productController');
 
 // Ruta para obtener todos los productos
 router.get('/', ProductController.showAllProducts)
@@ -10,5 +11,8 @@ router.get('/category/:category?', ProductController.showProductsByCategory);
 
 // Ruta para obtener un producto específico por ID
 router.get('/:productId', ProductController.showProductById);
+
+// Ruta para crear un producto
+router.post('/create', createProduct);
 
 module.exports = router;

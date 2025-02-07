@@ -15,6 +15,7 @@ const apiProductsControllers = {
     createProduct : async(req,res) => {
         try {
             const { name, description, image, category,size, price } = req.body;
+            
             if (!name || !description || !image || !category || !size || !price) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
