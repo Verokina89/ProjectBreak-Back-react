@@ -184,3 +184,10 @@ Conecta a la base de datos.
 Inicia el servidor en el puerto configurado (process.env.PORT o 4500 si no hay uno definido).
 
 
+Ejemplo de como deben de ser probadas las rutas en postman:
+
+IMG1:
+
+IMG2:
+
+IMG3:

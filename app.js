@@ -32,7 +32,6 @@ app.use(methodOverride('_method')); //soporta POST-PUT-DELETE en formularios
 app.use('/api/products', productRoutes);
 app.use('/api/products/v1', ApiProductsRoutes);
 
-
 //ruta autenticacin
 const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
