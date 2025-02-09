@@ -1,4 +1,5 @@
 const Product = require('../models/Product')
+const mongoose = require('mongoose'); // Importar mongoose como prueba
 
 const apiProductsControllers = {
     // Obtener todos los productos
@@ -13,9 +14,10 @@ const apiProductsControllers = {
         }
     },
     createProduct : async(req,res) => {
+        console.log("Ruta POST /create funcionando");
         try {
             const { name, description, image, category,size, price } = req.body;
-            
+
             if (!name || !description || !image || !category || !size || !price) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
@@ -28,20 +30,43 @@ const apiProductsControllers = {
         }
     },
     
-    showProductById : async(req,res) => {
+    // showProductById : async(req,res) => {
+    //     try {
+    //         console.log("Params:", req.params);
+    //         const { productId } = req.params;
+    //         const product = await Product.findById(productId);
+    //         if (!product) {
+    //             return res.status(404).json({ message: 'Product not found' });
+    //         }
+    //         res.json(product);
+    //     } catch (err) {
+    //         console.error("Error fetching product:", err);
+    //         res.status(500).send('Error fetching product');
+    //     }
+    // },
+
+    showProductById: async (req, res) => {
         try {
-            console.log("Params:", req.params);
             const { productId } = req.params;
-            const product = await Product.findById(productId);
-            if (!product) {
-                return res.status(404).json({ message: 'Product not found' });
+    
+            // Validar si el productId es un ObjectId válido
+            if (!mongoose.Types.ObjectId.isValid(productId)) {
+                return res.status(400).json({ message: "Invalid product ID" });
             }
+    
+            const product = await Product.findById(productId);
+    
+            if (!product) {
+                return res.status(404).json({ message: "Product not found" });
+            }
+    
             res.json(product);
         } catch (err) {
             console.error("Error fetching product:", err);
-            res.status(500).send('Error fetching product');
+            res.status(500).send("Error fetching product");
         }
     },
+
     updateProduct : async(req,res) => {
         // console.log('updateProduct alcanzado con params:', req.params);
         try {

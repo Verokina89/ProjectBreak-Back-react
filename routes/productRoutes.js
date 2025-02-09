@@ -9,10 +9,12 @@ router.get('/', ProductController.showAllProducts)
 // Ruta para obtener productos por categoría (o todos los productos si no hay filtro)
 router.get('/category/:category?', ProductController.showProductsByCategory);
 
+// Ruta para crear un producto
+router.post('/create', ProductController.createProduct);
+
 // Ruta para obtener un producto específico por ID
 router.get('/:productId', ProductController.showProductById);
 
-// Ruta para crear un producto
-router.post('/create', createProduct);
+
 
 module.exports = router;

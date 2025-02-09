@@ -27,10 +27,16 @@ app.use(express.static(path.join(__dirname, "public")));  //servir archivos esta
 app.use(cookieParser());
 app.use(methodOverride('_method')); //soporta POST-PUT-DELETE en formularios
 
+// 👉 Aquí colocamos el logger para ver las solicitudes
+app.use((req, res, next) => {
+    console.log(`Solicitud recibida: ${req.method} ${req.url}`);
+    next();
+});
+
 //Rutas API
 // app.use('/api/products', productRoutes, ApiProductsRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/products/v1', ApiProductsRoutes);
+app.use('/api/products/', ApiProductsRoutes);
 
 //ruta autenticacin
 const authRoutes = require('./routes/authRoutes');

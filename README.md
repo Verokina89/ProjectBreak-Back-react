@@ -1,4 +1,5 @@
 # Acceso  a la API de la Tienda de ropa. 
+Para acceder: prueba@example.com / 123456
 El backend ya está configurado para devolver datos en formato JSON y manejar la autenticación con Firebase.
 
 Endpoints del backend:
@@ -191,3 +192,4 @@ IMG1:
 IMG2:
 
 IMG3:
+
