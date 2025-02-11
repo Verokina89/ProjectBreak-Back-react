@@ -15,10 +15,10 @@ exports.createProduct = async (req,res) => {
   try {
       const { name, description, image, category,size, price } = req.body;
       
-      if (!name || !description || !image || !category || !size || !price) {
+      if (!name || !description || !image || !category || !color  || !size || !price) {
           return res.status(400).json({ message: 'All fields are required' });
       }
-      const newProduct = new Product({ name, description, image, category,size, price });
+      const newProduct = new Product({ name, description, image, category, color, size, price });
       await newProduct.save();
       
       res.status(201).json({ message: 'Product created successfully', product: newProduct });
@@ -54,4 +54,3 @@ exports.showProductById = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener el producto' });
   }
 };
-

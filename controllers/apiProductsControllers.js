@@ -16,13 +16,13 @@ const apiProductsControllers = {
     createProduct : async(req,res) => {
         console.log("Ruta POST /create funcionando");
         try {
-            const { name, description, image, category,size, price } = req.body;
+            const { name, description, image, category, size, price, color } = req.body;
 
-            if (!name || !description || !image || !category || !size || !price) {
+            if (!name || !description || !image || !category || !color || !size || !price) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
             console.log("Data received:", req.body);
-            const newProduct = new Product({ name, description, image, category,size, price });
+            const newProduct = new Product({ name, description, image, category, color,size, price });
             await newProduct.save();
             
             res.status(201).json({ message: 'Product created successfully', product: newProduct });
@@ -61,9 +61,9 @@ const apiProductsControllers = {
             console.log('Body:', req.body);
 
             const { productId } = req.params;
-            const { name, description, image, category, size, price } = req.body;
+            const { name, description, image, category, color, size, price } = req.body;
 
-            if (!name || !description || !image || !category || !size || !price) {
+            if (!name || !description || !image || !category || !color  || !size || !price) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
 
@@ -72,7 +72,7 @@ const apiProductsControllers = {
                 return res.status(404).json({ message: 'Producto no encontrado.' });
             }
             const updatedProduct = await Product.findByIdAndUpdate(productId, 
-                { name, description, image, category, size, price }, 
+                { name, description, image, category, color, size, price }, 
                 { new: true, runValidators: true } 
             );
             res.json({ message: 'Product updated successfully', product: updatedProduct });

@@ -20,12 +20,17 @@ const ProductSchema = new mongoose.Schema({
     },
     size: { 
         type: String,
-        enum: ['XS', 'S', 'M', 'L', 'XL', 'xs', 's', 'm', 'l', 'xl', 'ALLS'], 
+        enum: ['XS', 'S', 'M', 'L', 'XL', 'xs', 's', 'm', 'l', 'xl', 'All', 'all'], 
         required: [true, 'Talla obligatoria']
     },
     price: { 
         type: Number, 
         required: [true, 'Precio obligatorio'] 
+    },
+    color: { 
+        type: String,
+        enum: ['Blanco', 'Negro', 'Marron', 'Amarillo', 'Naranja', 'Granate', 'Azul', 'Verde', 'Gris', 'Rosado', 'Morado', 'Rojo'] 
+        // required: [true, 'Color obligatoria']
     },
     // stock: { 
     //     type: Number, 
