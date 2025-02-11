@@ -21,6 +21,7 @@ const apiProductsControllers = {
             if (!name || !description || !image || !category || !size || !price) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
+            console.log("Data received:", req.body);
             const newProduct = new Product({ name, description, image, category,size, price });
             await newProduct.save();
             
@@ -30,20 +31,6 @@ const apiProductsControllers = {
         }
     },
     
-    // showProductById : async(req,res) => {
-    //     try {
-    //         console.log("Params:", req.params);
-    //         const { productId } = req.params;
-    //         const product = await Product.findById(productId);
-    //         if (!product) {
-    //             return res.status(404).json({ message: 'Product not found' });
-    //         }
-    //         res.json(product);
-    //     } catch (err) {
-    //         console.error("Error fetching product:", err);
-    //         res.status(500).send('Error fetching product');
-    //     }
-    // },
 
     showProductById: async (req, res) => {
         try {
@@ -68,7 +55,6 @@ const apiProductsControllers = {
     },
 
     updateProduct : async(req,res) => {
-        // console.log('updateProduct alcanzado con params:', req.params);
         try {
             //log para depuracion
             console.log('Params:', req.params);
