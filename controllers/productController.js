@@ -13,9 +13,9 @@ exports.showAllProducts = async (req, res) => {
 //controlador para manejar la creacion de producto(prueba aqui esta funcion para ver si el error de no poder crear el producto tiene que ver con que solo esta la funcion en los controlodares de las rutas para autenticados es decir apiProductsControllers.js)
 exports.createProduct = async (req,res) => {
   try {
-      const { name, description, image, category,size, price } = req.body;
+      const { name, description, image, category, color, size, price } = req.body;
       
-      if (!name || !description || !image || !category || !color  || !size || !price) {
+      if (!name || !description || !image || !category  || !color || !size || !price) {
           return res.status(400).json({ message: 'All fields are required' });
       }
       const newProduct = new Product({ name, description, image, category, color, size, price });

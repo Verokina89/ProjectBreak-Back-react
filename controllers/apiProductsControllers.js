@@ -16,13 +16,13 @@ const apiProductsControllers = {
     createProduct : async(req,res) => {
         console.log("Ruta POST /create funcionando");
         try {
-            const { name, description, image, category, size, price, color } = req.body;
+            const { name, description, image, category, color, size, price } = req.body;
 
-            if (!name || !description || !image || !category || !color || !size || !price) {
+            if (!name || !description || !image || !category || !color|| !size || !price) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
             console.log("Data received:", req.body);
-            const newProduct = new Product({ name, description, image, category, color,size, price });
+            const newProduct = new Product({ name, description, image, category, color, size, price });
             await newProduct.save();
             
             res.status(201).json({ message: 'Product created successfully', product: newProduct });
@@ -55,6 +55,7 @@ const apiProductsControllers = {
     },
 
     updateProduct : async(req,res) => {
+
         try {
             //log para depuracion
             console.log('Params:', req.params);
@@ -63,7 +64,7 @@ const apiProductsControllers = {
             const { productId } = req.params;
             const { name, description, image, category, color, size, price } = req.body;
 
-            if (!name || !description || !image || !category || !color  || !size || !price) {
+            if (!name || !description || !image || !category || !color || !size || !price) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
 

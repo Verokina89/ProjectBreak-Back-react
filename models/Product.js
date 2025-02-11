@@ -29,8 +29,8 @@ const ProductSchema = new mongoose.Schema({
     },
     color: { 
         type: String,
-        enum: ['Blanco', 'Negro', 'Marron', 'Amarillo', 'Naranja', 'Granate', 'Azul', 'Verde', 'Gris', 'Rosado', 'Morado', 'Rojo'] 
-        // required: [true, 'Color obligatoria']
+        enum: ['Blanco', 'Negro', 'Marron', 'Amarillo', 'Naranja', 'Granate', 'Azul', 'Verde', 'Gris', 'Rosado', 'Morado', 'Rojo'], 
+        required: [true, 'Color obligatoria']
     },
     // stock: { 
     //     type: Number, 
